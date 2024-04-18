@@ -23,4 +23,8 @@ if ($result) {
 
 // Lukk  tilkoblingen
 $conn->close();
+
+// Returnerer til html siden
+header("../../resources/static/index.html");
+ecit();
 ?>
