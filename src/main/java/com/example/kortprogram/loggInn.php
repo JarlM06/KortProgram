@@ -25,6 +25,6 @@ if ($result) {
 $conn->close();
 
 // Returnerer til html siden
-header("../../resources/static/index.html");
+header("Location: http://localhost/src/main/resources/static/");
 exit();
 ?>
