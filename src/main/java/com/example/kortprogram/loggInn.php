@@ -26,5 +26,5 @@ $conn->close();
 
 // Returnerer til html siden
 header("../../resources/static/index.html");
-ecit();
+exit();
 ?>
