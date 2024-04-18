@@ -11,20 +11,52 @@ if ($conn->connect_error) {
 $username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';
 
-// Utfør spørring for å legge til brukeren
-$result = $conn->query("INSERT INTO users (username, password) VALUES ('$username', '$password')");
+// Utfør spørring for å sjekke om brukeren finnes
+$query = "SELECT id FROM users WHERE username='$username' AND password='$password'";
+$result = $conn->query($query);
 
-// Sjekk om det ble satt inn en ny rad
-if ($result) {
-    echo "Bruker opprettet vellykket!";
+// Sjekk om det finnes en rad som samsvarer med brukernavn og passord
+if ($result->num_rows > 0) {
+    // Hent brukerens ID
+    $row = $result->fetch_assoc();
+    $userId = $row['id'];
+
+    // Bygg tabellnavn basert på brukerens ID
+    $tableName = "stock_" . $userId;
+
+    // Utfør spørring for å hente alle rader fra tabellen basert på brukerens ID
+    $tableQuery = "SELECT * FROM $tableName";
+    $tableResult = $conn->query($tableQuery);
+
+    if ($tableResult) {
+        // Hent alle radene fra tabellen
+        $tableData = array();
+        while ($row = $tableResult->fetch_assoc()) {
+            $tableData[] = $row;
+        }
+
+        // Lukk tilkoblingen
+        $conn->close();
+
+        // Returner dataene som JSON
+        header('Content-Type: application/json');
+        echo json_encode(array("success" => true, "tableData" => $tableData));
+    } else {
+        // Feil ved henting av data fra tabellen
+        // Lukk tilkoblingen
+        $conn->close();
+
+        // Returner en feilmelding som JSON
+        header('Content-Type: application/json');
+        echo json_encode(array("success" => false, "message" => "Feil ved henting av data fra tabellen."));
+    }
 } else {
-    echo "Feil ved oppretting av bruker.";
+    // Brukeren ble ikke funnet
+    // Lukk tilkoblingen
+    $conn->close();
+
+    // Returner en feilmelding som JSON
+    header('Content-Type: application/json');
+    echo json_encode(array("success" => false, "message" => "Feil brukernavn eller passord."));
 }
-
-// Lukk  tilkoblingen
-$conn->close();
-
-// Returnerer til html siden
-header("Location: http://172.20.128.64/src/main/resources/static/");
-exit();
 ?>
