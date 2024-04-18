@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="../../java/com/example/kortprogram/loggInn.php" method="POST">
+            <div class="input-group">
+                <label for="username">Brukernavn:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Passord:</label>
+                <input type="password" id="password" name="password" required
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}"
+                title="Passordet må inneholdet minst 8 tegn, inkludert minst
+                ett tall, en stor bokstav, en liten bokstav og et spesialtegn.">
+            </div>
+            <button type="submit">Logg inn</button>
+        </form>
+    </div>
+</body>
+</html>
