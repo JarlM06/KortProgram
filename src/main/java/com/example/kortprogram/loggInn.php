@@ -41,6 +41,12 @@ if ($result->num_rows > 0) {
         // Returner dataene som JSON
         header('Content-Type: application/json');
         echo json_encode(array("success" => true, "tableData" => $tableData));
+
+        // Endrer tableData til JSON
+        $tableDataJSON = json_encode($tableData);
+
+        // Redirekt til program.html med tableData i query string
+        header("Location: http://172.20.128.64/src/main/resources/static/program.html?tableData=$tableDataJSON");
     } else {
         // Feil ved henting av data fra tabellen
         // Lukk tilkoblingen

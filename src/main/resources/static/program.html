@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<script>
+    // Funksjon for å gå query parametere fra URL
+    function getQueryParam(param) {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        return urlParams.get(param);
+    }
+
+    // Hent tableData fra URL
+    const tableDataJSON = getQueryParam("tableData");
+
+    // Gjør tableData JSON string til et JavaScript object
+    const tableData = JSON.parse(tableDataJSON);
+
+    console.log(tableData);
+</script>
 </body>
 </html>
