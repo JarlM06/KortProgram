@@ -25,5 +25,26 @@
     <div>
         <a href="registrer.html">Registrer</a>
     </div>
+
+    <script type="application/javascript">
+        // Function to get value of a query parameter from URL
+        function getQueryParam(param) {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return urlParams.has(param) ? urlParams.get(param) : null;
+        }
+
+        // Get the value of loggInn parameter from the URL
+        const loggInnValue = getQueryParam("loggInn");
+
+        // Check if loggInn parameter is 'false'
+        if (loggInnValue && loggInnValue.toLowerCase() === 'false') {
+            // Perform actions if loggInn is false
+            console.log("loggInn is false");
+        } else {
+            // Perform actions if loggInn is true or not specified
+            console.log("loggInn is true or not specified");
+        }
+    </script>
 </body>
 </html>

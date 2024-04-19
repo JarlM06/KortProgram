@@ -67,6 +67,6 @@ if ($result->num_rows > 0) {
     header('Content-Type: application/json');
     echo json_encode(array("success" => false, "message" => "Feil brukernavn eller passord."));
 
-    header("Location: http://172.20.128.64/src/main/resources/static/index.html");
+    header("Location: http://172.20.128.64/src/main/resources/static/index.html?loggInn=false");
 }
 ?>
