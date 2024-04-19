@@ -55,6 +55,8 @@ if ($result->num_rows > 0) {
         // Returner en feilmelding som JSON
         header('Content-Type: application/json');
         echo json_encode(array("success" => false, "message" => "Feil ved henting av data fra tabellen."));
+
+        header("Location: http://172.20.128.64/src/main/resources/static/index.html");
     }
 } else {
     // Brukeren ble ikke funnet
@@ -64,5 +66,7 @@ if ($result->num_rows > 0) {
     // Returner en feilmelding som JSON
     header('Content-Type: application/json');
     echo json_encode(array("success" => false, "message" => "Feil brukernavn eller passord."));
+
+    header("Location: http://172.20.128.64/src/main/resources/static/index.html");
 }
 ?>

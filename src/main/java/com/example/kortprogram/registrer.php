@@ -16,12 +16,26 @@ $result = $conn->query("INSERT INTO users (username, password) VALUES ('$usernam
 
 // Sjekk om det ble satt inn en ny rad
 if ($result) {
-    echo "Bruker opprettet vellykket!";
+    // Hent ID for den nyopprettede brukeren
+    $userId = $conn->insert_id;
+
+    // Opprett tabell for brukeren med to kolonner: Type (varchar(255)) og Number (int(11))
+    $createTableQuery = "CREATE TABLE IF NOT EXISTS stock_$userId (
+        Type VARCHAR(255),
+        Number INT(11)
+    )";
+    $createTableResult = $conn->query($createTableQuery);
+
+    if ($createTableResult) {
+        echo "Bruker opprettet vellykket!";
+    } else {
+        echo "Feil ved oppretting av brukerens tabell.";
+    }
 } else {
     echo "Feil ved oppretting av bruker.";
 }
 
-// Lukk  tilkoblingen
+// Lukk tilkoblingen
 $conn->close();
 
 // Returnerer til html siden
