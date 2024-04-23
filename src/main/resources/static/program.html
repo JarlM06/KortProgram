@@ -23,6 +23,35 @@
     const tableData = JSON.parse(tableDataJSON);
 
     console.log(tableData);
+
+    let inactivityTimer;
+
+    // Reset the timer when there's user activity
+    function resetInactivityTimer() {
+        clearTimeout(inactivityTimer);  // clear the existing timer
+        startInactivityTimer();  // restart the timer
+    }
+
+    // Start the inactivity timer
+    function startInactivityTimer() {
+        // Set a 5-minute timer
+        inactivityTimer = setTimeout(redirectToIndex, 1 * 60 * 1000);  // 5 minutes
+    }
+
+    // Function to redirect to index.html
+    function redirectToIndex() {
+        window.location.href = 'index.html';  // redirect to index.html
+    }
+
+    // Register event listeners for user activity
+    window.onload = function() {
+        // Any kind of user interaction resets the timer
+        document.body.addEventListener('mousemove', resetInactivityTimer);
+        document.body.addEventListener('keydown', resetInactivityTimer);
+        document.body.addEventListener('touchstart', resetInactivityTimer);
+
+        startInactivityTimer();  // Start the initial timer
+    };
 </script>
 </body>
 </html>
