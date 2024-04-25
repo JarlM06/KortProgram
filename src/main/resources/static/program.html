@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+    <div>
+        <table id="table-container"></table>
+    </div>
 <script type="application/javascript">
     // Funksjon for å gå query parametere fra URL
     function getQueryParam(param) {
@@ -24,11 +26,22 @@
 
     console.log(tableData);
 
+    function generateTable(tableData) {
+        let table = 'table';
+        table += '<tr><th>Type</th><th>Number</th></tr>';
+        tableData.forEach(item => {
+            table += `<tr><td>${item.Type}</td><td>${item.Number}</td>`;
+        })
+        table += '</table>';
+        return table;
+    }
+
+    $("#table-container").innerHTML = generateTable(tableData);
+
     let inactivityTimer;
 
     // Reset the timer when there's user activity
     function resetInactivityTimer() {
-        console.log("Reset inactivity");
         clearTimeout(inactivityTimer);  // clear the existing timer
         startInactivityTimer();  // restart the timer
     }
@@ -36,19 +49,16 @@
     // Start the inactivity timer
     function startInactivityTimer() {
         // Set a 5-minute timer
-        console.log("Start inactivity");
-        inactivityTimer = setTimeout(redirectToIndex, 1 * 20 * 1000);  // 5 minutes
+        inactivityTimer = setTimeout(redirectToIndex, 30 * 60 * 1000);
     }
 
     // Function to redirect to index.html
     function redirectToIndex() {
-        console.log("Change window");
         window.location.href = 'index.html';  // redirect to index.html
     }
 
     // Register event listeners for user activity
     window.onload = function() {
-        console.log("Window load")
         // Any kind of user interaction resets the timer
         document.body.addEventListener('mousemove', resetInactivityTimer);
         document.body.addEventListener('keydown', resetInactivityTimer);
