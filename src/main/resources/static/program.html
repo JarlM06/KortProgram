@@ -11,61 +11,64 @@
         <table id="table-container"></table>
     </div>
 <script type="application/javascript">
-    // Funksjon for å gå query parametere fra URL
-    function getQueryParam(param) {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        return urlParams.get(param);
-    }
+    $("document").ready(function() {
+        // Funksjon for å gå query parametere fra URL
+        function getQueryParam(param) {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return urlParams.get(param);
+        }
 
-    // Hent tableData fra URL
-    const tableDataJSON = getQueryParam("tableData");
+        // Hent tableData fra URL
+        const tableDataJSON = getQueryParam("tableData");
 
-    // Gjør tableData JSON string til et JavaScript object
-    const tableData = JSON.parse(tableDataJSON);
+        // Gjør tableData JSON string til et JavaScript object
+        const tableData = JSON.parse(tableDataJSON);
 
-    console.log(tableData);
+        console.log(tableData);
 
-    function generateTable(tableData) {
-        let table = 'table';
-        table += '<tr><th>Type</th><th>Number</th></tr>';
-        tableData.forEach(item => {
-            table += `<tr><td>${item.Type}</td><td>${item.Number}</td>`;
-        })
-        table += '</table>';
-        return table;
-    }
+        function generateTable(tableData) {
+            let table = 'table';
+            table += '<tr><th>Type</th><th>Number</th></tr>';
+            tableData.forEach(item => {
+                table += `<tr><td>${item.Type}</td><td>${item.Number}</td>`;
+            })
+            table += '</table>';
+            return table;
+        }
 
-    $("#table-container").innerHTML = generateTable(tableData);
+        const tableContainer = document.getElementById('table-container');
+        tableContainer.innerHTML = generateTable(tableData);
 
-    let inactivityTimer;
+        let inactivityTimer;
 
-    // Reset the timer when there's user activity
-    function resetInactivityTimer() {
-        clearTimeout(inactivityTimer);  // clear the existing timer
-        startInactivityTimer();  // restart the timer
-    }
+        // Reset the timer when there's user activity
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);  // clear the existing timer
+            startInactivityTimer();  // restart the timer
+        }
 
-    // Start the inactivity timer
-    function startInactivityTimer() {
-        // Set a 5-minute timer
-        inactivityTimer = setTimeout(redirectToIndex, 30 * 60 * 1000);
-    }
+        // Start the inactivity timer
+        function startInactivityTimer() {
+            // Set a 5-minute timer
+            inactivityTimer = setTimeout(redirectToIndex, 30 * 60 * 1000);
+        }
 
-    // Function to redirect to index.html
-    function redirectToIndex() {
-        window.location.href = 'index.html';  // redirect to index.html
-    }
+        // Function to redirect to index.html
+        function redirectToIndex() {
+            window.location.href = 'index.html';  // redirect to index.html
+        }
 
-    // Register event listeners for user activity
-    window.onload = function() {
-        // Any kind of user interaction resets the timer
-        document.body.addEventListener('mousemove', resetInactivityTimer);
-        document.body.addEventListener('keydown', resetInactivityTimer);
-        document.body.addEventListener('touchstart', resetInactivityTimer);
+        // Register event listeners for user activity
+        window.onload = function() {
+            // Any kind of user interaction resets the timer
+            document.body.addEventListener('mousemove', resetInactivityTimer);
+            document.body.addEventListener('keydown', resetInactivityTimer);
+            document.body.addEventListener('touchstart', resetInactivityTimer);
 
-        startInactivityTimer();  // Start the initial timer
-    };
+            startInactivityTimer();  // Start the initial timer
+        };
+    });
 </script>
 </body>
 </html>
