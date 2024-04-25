@@ -10,6 +10,14 @@
     <div>
         <table id="table-container"></table>
     </div>
+    <div id="form-container">
+        <form action="../../java/com/example/kortprogram/addCard.php" method="post" id="addCard">
+            <input type="hidden" name="userIdInput" id="userIdInput" value=""/>
+            <label for="cardType">Type: </label> <input type="text" id="cardType" class="inputCard"/>
+            <label for="cardNumber">Number: </label> <input type="number" id="cardNumber" class="inputCard"/>
+        </form>
+    </div>
+
 <script type="application/javascript">
     $("document").ready(function() {
         // Funksjon for å gå query parametere fra URL
@@ -21,11 +29,16 @@
 
         // Hent tableData fra URL
         const tableDataJSON = getQueryParam("tableData");
+        const userIdJSON = getQueryParam("userId");
 
         // Gjør tableData JSON string til et JavaScript object
         const tableData = JSON.parse(tableDataJSON);
+        const userId = JSON.parse(userIdJSON);
 
         console.log(tableData);
+
+        const userIdInput = document.getElementById('userIdInput');
+        userIdInput.value = userId;
 
         function generateTable(tableData) {
             let table = '<table>';

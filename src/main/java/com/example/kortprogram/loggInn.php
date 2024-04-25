@@ -46,7 +46,7 @@ if ($result->num_rows > 0) {
         $tableDataJSON = json_encode($tableData);
 
         // Redirekt til program.html med tableData i query string
-        header("Location: http://172.20.128.64/src/main/resources/static/program.html?tableData=$tableDataJSON");
+        header("Location: http://172.20.128.64/src/main/resources/static/program.html?tableData=$tableDataJSON?userId=$userId");
     } else {
         // Feil ved henting av data fra tabellen
         // Lukk tilkoblingen
