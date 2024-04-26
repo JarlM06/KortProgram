@@ -38,7 +38,7 @@ h2 {
 }
 
 button {
-    width: 100%;
+    width: 30%;
     padding: 10px;
     background-color: #3498db;
     color: #fff;
@@ -55,6 +55,7 @@ button:hover {
 
 /* Styling for links as buttons */
 a.button {
+    width: 30%;
     display: inline-block;
     padding: 10px 20px; /* Gives the link a button-like appearance */
     background-color: #3498db;
