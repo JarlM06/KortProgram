@@ -13,9 +13,17 @@
     <div class="form-container">
         <form action="../../java/com/example/kortprogram/addCard.php" method="post" id="addCard">
             <input type="hidden" name="userIdInput" id="userIdInput" value=""/>
-            <label for="cardType">Type: </label> <input type="text" id="cardType" name="cardType" class="inputCard"/>
-            <label for="cardNumber">Number: </label> <input type="number" id="cardNumber" name="cardNumber" class="inputCard"/>
-            <input type="submit" value="Insert"/>
+            <div class="input-group">
+                <label for="cardType">Type: </label>
+                <input type="text" id="cardType" name="cardType" class="inputCard"/>
+            </div>
+            <div class="input-group">
+                <label for="cardNumber">Number: </label>
+                <input type="number" id="cardNumber" name="cardNumber" class="inputCard"/>
+            </div>
+            <div class="button-div">
+                <input type="submit" value="Insert"/>
+            </div>
         </form>
     </div>
 
