@@ -1,4 +1,4 @@
-/* Common styles for the pages */
+/* CSS for alle sidene */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -32,7 +32,7 @@ h2 {
 
 .input-group input {
     width: 95%;
-    padding: 10px; /* Adds padding to the input fields */
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -58,11 +58,10 @@ button:hover {
     background-color: #2980b9;
 }
 
-/* Styling for links as buttons */
 a.button {
     width: 30%;
     display: inline-block;
-    padding: 10px 20px; /* Gives the link a button-like appearance */
+    padding: 10px 20px;
     background-color: #3498db;
     color: white;
     text-decoration: none;
@@ -75,7 +74,6 @@ a.button:hover {
     background-color: #2980b9;
 }
 
-/* Additional styles for the generated table in program.html */
 table {
     width: 100%;
     border-collapse: collapse;
