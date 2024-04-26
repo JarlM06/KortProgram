@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Div for tabbelen -->
     <div>
         <table id="table-container"></table>
     </div>
+    <!-- Div som inneholder form -->
     <div class="form-container">
+        <!-- Form for å legge til noe i databasen -->
         <form action="../../java/com/example/kortprogram/addCard.php" method="post" id="addCard">
             <input type="hidden" name="userIdInput" id="userIdInput" value=""/>
             <div class="input-group">
@@ -29,27 +32,28 @@
     </div>
 
 <script type="application/javascript">
+    // Kjører når nettsiden er lastet inn
     $("document").ready(function() {
-        // Funksjon for å gå query parametere fra URL
+        // Funksjon for å få query parametere fra URL
         function getQueryParam(param) {
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             return urlParams.get(param);
         }
 
-        // Hent tableData fra URL
+        // Hent tableData og userId fra URL
         const tableDataJSON = getQueryParam("tableData");
         const userIdJSON = getQueryParam("userId");
 
-        // Gjør tableData JSON string til et JavaScript object
+        // Gjør tableData og userId JSON strings til JavaScript objecter
         const tableData = JSON.parse(tableDataJSON);
         const userId = JSON.parse(userIdJSON);
 
-        console.log(tableData);
-
+        // Legger userId inn i hidden input
         const userIdInput = document.getElementById('userIdInput');
         userIdInput.value = userId;
 
+        // Funksjon for å lage tabellen
         function generateTable(tableData) {
             let table = '<table>';
             table += '<tr><th>Type</th><th>Number</th></tr>';
@@ -60,36 +64,38 @@
             return table;
         }
 
+        // Legger tabellen i HTML siden
         const tableContainer = document.getElementById('table-container');
         tableContainer.innerHTML = generateTable(tableData);
 
+        // Lager en klokke for inaktivitet
         let inactivityTimer;
 
-        // Reset the timer when there's user activity
+        // Reseter klokken når brukeren er aktiv
         function resetInactivityTimer() {
-            clearTimeout(inactivityTimer);  // clear the existing timer
-            startInactivityTimer();  // restart the timer
+            clearTimeout(inactivityTimer);  // tøm klokken
+            startInactivityTimer();  // retart klokken
         }
 
-        // Start the inactivity timer
+        // Start inaktivitets-klokken
         function startInactivityTimer() {
-            // Set a 5-minute timer
+            // Setter klokken til 30 minutter
             inactivityTimer = setTimeout(redirectToIndex, 30 * 60 * 1000);
         }
 
-        // Function to redirect to index.html
+        // Funksjon som sender brukeren til index.html
         function redirectToIndex() {
-            window.location.href = 'index.html';  // redirect to index.html
+            window.location.href = 'index.html';
         }
 
-        // Register event listeners for user activity
+        // Registrer event listeners for bruker aktivitet
         window.onload = function() {
-            // Any kind of user interaction resets the timer
+            // Hvilken som helst form for aktivitet resetter klokken
             document.body.addEventListener('mousemove', resetInactivityTimer);
             document.body.addEventListener('keydown', resetInactivityTimer);
             document.body.addEventListener('touchstart', resetInactivityTimer);
 
-            startInactivityTimer();  // Start the initial timer
+            startInactivityTimer();  // Starter klokken
         };
     });
 </script>

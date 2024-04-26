@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Div som inneholer form -->
     <div class="form-container">
         <h2>Login</h2>
+        <!-- Form for å logge inn -->
         <form action="../../java/com/example/kortprogram/loggInn.php" method="POST">
             <div class="input-group">
                 <label for="username">Brukernavn:</label>
@@ -26,19 +28,19 @@
     </div>
 
     <script type="application/javascript">
-        // Function to get value of a query parameter from URL
+        // Funksjon som henter verdien av et query paramter fra URL
         function getQueryParam(param) {
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             return urlParams.has(param) ? urlParams.get(param) : null;
         }
 
-        // Get the value of loggInn parameter from the URL
+        // Henter verdien av loggInn paramater fra URL
         const loggInnValue = getQueryParam("loggInn");
 
-        // Check if loggInn parameter is 'false'
+        // Sjekker om loggInn parameter er 'false'
         if (loggInnValue && loggInnValue.toLowerCase() === 'false') {
-            // Perform actions if loggInn is false
+            // Sier til brukeren at logg inn informasjonen er feil
             alert("Feil brukernavn eller passord");
         }
     </script>
