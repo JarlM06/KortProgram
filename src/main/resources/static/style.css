@@ -1,4 +1,4 @@
-/* common styles for the pages */
+/* Common styles for the pages */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -11,16 +11,6 @@ h2 {
     text-align: center;
 }
 
-a {
-    text-decoration: none;
-    color: #3498db;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* login container styles */
 .login-container {
     max-width: 400px;
     margin: 50px auto;
@@ -42,7 +32,7 @@ a:hover {
 
 .input-group input {
     width: 100%;
-    padding: 10px;
+    padding: 10px; /* Adds padding to the input fields */
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -63,7 +53,23 @@ button:hover {
     background-color: #2980b9;
 }
 
-/* additional styles for the generated table in program.html */
+/* Styling for links as buttons */
+a.button {
+    display: inline-block;
+    padding: 10px 20px; /* Gives the link a button-like appearance */
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+a.button:hover {
+    background-color: #2980b9;
+}
+
+/* Additional styles for the generated table in program.html */
 table {
     width: 100%;
     border-collapse: collapse;
