@@ -26,3 +26,22 @@ Hvilke spesifikasjoner du burde ha på serveren din for å kjøre programmet.
 * Sett opp en database og table på SQL serveren
 * Endre PHP filene med brukernavn, passord, adresse, databasenavn og tablenavn etter hva du har satt det til
 
+![Server spesifikasjoner](specs.png)
+<br><br>
+## Brukertesting
+1. Flytt deg til ``registrer``-siden.
+2. Får du laget en bruker?
+3. Klarer du å logge inn med brukeren du akkurat lagde?
+4. Hva vises på siden du da blir tatt til?
+5. Prøv å legg til noe i tabellen.
+<br><br>
+6. Var programmet intuitivt å bruke?
+7. Hva synes du om utseende/grafikken?
+8. Er det noe som kunne forbedres?
+
+## Kilder
+HTML, PHP, CSS og SQL - https://www.w3schools.com/
+
+GitHub in Ubuntu - https://www.howtoforge.com/tutorial/install-git-and-github-on-ubuntu/
+
+Apache2 - https://ubuntu.com/tutorials/install-and-configure-apache#1-overview
